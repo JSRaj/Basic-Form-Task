@@ -1,0 +1,50 @@
+<br>
+<br>
+<div class="container">
+  <div class="row">
+      
+  <div class="col-xs-10 col-sm-8 col-md-5 col-sm-offset-1 col-md-offset-2">
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit(f)" #f="ngForm">
+        <h3>{{error}}</h3>
+        <br>           
+           <div class="form-group">
+        <label for="email">Email</label>
+        <input type="text" id="email" formControlName="email" class="form-control" (input)="emailChange($event)">
+        <span *ngIf="!loginForm.get('email').valid && loginForm.get('email').touched"
+        
+        class="help-block">Please enter the valid email !</span>
+       
+      </div>
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input type="password" id="password" formControlName="password" class="form-control" (input)="pswdChange($event)">
+        <span *ngIf="!loginForm.get('password').valid && loginForm.get('password').touched" 
+        class="help-block">Please enter a valid password! 
+      Note: 1. Password must be 8 characters long
+            2. Atleast one special character
+            3. Atleast one Character</span>
+      </div>
+      <div class="form-group">
+        <label for ="Select">Select Subscription</label>
+        <select  id="Select" name="Select" formControlName="slct" (input)="selectChange($event)"
+        class="form-control">
+          <option *ngFor="let slct of selects" [value]="slct" > {{slct}} </option>
+          </select>
+        </div>
+      <br>
+      <div>                 
+      <button class="btn btn-success" type="submit"  (click)="onSubmit()">Submit</button>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;        
+      <button class="btn btn-danger" (click)="onClear()">Clear</button>
+      </div>
+      <br>
+      <br>
+            <p><span>Email: {{email}}</span></p>
+            <p><span>Password: {{pswd}} </span></p>
+           <p><span>Selected Subscription: {{selectedsub}} </span></p>
+    </form>
+    </div>
+  </div>
+</div>
+
+<router-outlet></router-outlet>
